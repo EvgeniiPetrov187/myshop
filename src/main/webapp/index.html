@@ -5,19 +5,42 @@
     <title>Cookies!</title>
     <link rel="stylesheet" href="styles.css" type="text/css"/>
 </head>
+
 <body>
-<div class="mainContainer">
+
+<div id="popup" class="poppi">
+    <h1>HEKKO</h1>
+    <span class="close">&times;</span>
+</div>
+
+<div id="main" class="mainContainer">
     <div>
         <button onclick="location.href='/list'">List of products</button>
         <button onclick="location.href='/add'">Add product</button>
+        <button onclick="www()">Test</button>
+        <button id="popButton">Popup</button>
     </div>
 </div>
+
 </body>
 
-<!--<script type="text/javascript">-->
-<!--    function www() {-->
-<!--        $('.mainContainer').style.width = (window.innerWidth / 2) + "px";-->
-<!--    }-->
-<!--    window.onload=www;-->
-<!--</script>-->
+<script>
+    function www() {
+        let container = document.getElementById('main');
+        container.style.width = '55px'
+        alert("HELP");
+    }
+
+    let popup = document.getElementById('popup');
+    let pop = document.getElementById('popButton');
+    let popupClose = document.querySelector('.close');
+
+    pop.onclick = function () {
+        popup.style.display = "block";
+    };
+    popupClose.onclick = function () {
+        popup.style.display = "none";
+    };
+</script>
+
 </html>
