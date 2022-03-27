@@ -1,9 +1,9 @@
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<link rel="stylesheet" href="styles.css" type="text/css"/>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="styles.css" type="text/css"/>
 </head>
 <body>
 <div class="mainContainer">
@@ -18,9 +18,9 @@
             out.println("</ui>");
         } else out.println("<p>There is nothing yet!</p>");
     %>
-</div>
-<div>
-    <button onclick="location.href='/'">Back to main</button>
+    <div>
+        <button onclick="location.href='/'">Back to main</button>
+    </div>
 </div>
 </body>
 </html>

@@ -30,6 +30,9 @@ public class AddServlet extends HttpServlet {
         List<String> products = productService.findAll().stream().map(ProductDto::getTitle).collect(Collectors.toList());
         req.setAttribute("products", products);
 
+        List<String> categories = categoryService.findAll().stream().map(CategoryDto::getTitle).collect(Collectors.toList());
+        req.setAttribute("categories", categories);
+
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("add.jsp");
         requestDispatcher.forward(req, resp);
     }
@@ -38,13 +41,8 @@ public class AddServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String title = req.getParameter("title");
         String category = req.getParameter("category");
-        Long categoryId = null;
-        try {
-            categoryId = (Long.parseLong(category));
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-        CategoryDto categoryDto = categoryService.findById(categoryId);
+
+        CategoryDto categoryDto = categoryService.findByTitle(category);
         ProductDto productDto = new ProductDto(null, title, categoryDto);
         productService.saveOrUpdate(productDto);
 
