@@ -9,6 +9,7 @@ import com.petrov.entity.Product;
 import com.petrov.service.CategoryService;
 import com.petrov.service.ProductService;
 
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,8 +23,11 @@ import java.util.stream.Collectors;
 @WebServlet(urlPatterns = "/add")
 public class AddServlet extends HttpServlet {
 
-    ProductService productService = ProductService.getProductService();
-    CategoryService categoryService = CategoryService.getCategoryService();
+    @EJB
+    ProductService productService;
+
+    @EJB
+    CategoryService categoryService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

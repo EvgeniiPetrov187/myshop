@@ -1,18 +1,17 @@
 package com.petrov.dao;
 
 import com.petrov.entity.Category;
-import com.petrov.entity.Product;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import javax.ejb.Stateful;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+@Stateful
 public class CategoryDaoImpl implements CategoryDao {
-
-    private static final CategoryDao categoryDao = new CategoryDaoImpl();
 
     private Session session;
 
@@ -64,9 +63,5 @@ public class CategoryDaoImpl implements CategoryDao {
         } finally {
             closeSessionWithTransaction();
         }
-    }
-
-    public static CategoryDao getDao() {
-        return categoryDao;
     }
 }
