@@ -1,14 +1,17 @@
-.mainContainer {
+.main-container {
     margin: auto;
-    padding-top: 100px;
+    padding-top: 50px;
+    padding-bottom: 50px;
     background-image: url("pictures/cookies.jpg") ;
     text-align: center;
     min-height: 200px;
     width: 500px;
+    z-index: 1;
 }
-.poppi {
+.pop-up-window {
     height: 300px;
     width: 300px;
     display: none;
     background-color: blueviolet;
+    z-index: 10;
 }

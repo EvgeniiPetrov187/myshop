@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="styles.css" type="text/css"/>
 </head>
 <body>
-<div class="mainContainer">
+<div class="main-container">
     <%
         List<String> titles = (List<String>) request.getAttribute("products");
         if (titles != null && !titles.isEmpty()) {

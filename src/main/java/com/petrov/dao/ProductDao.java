@@ -1,6 +1,5 @@
 package com.petrov.dao;
 
-import com.petrov.entity.Category;
 import com.petrov.entity.Product;
 
 import javax.ejb.Stateful;

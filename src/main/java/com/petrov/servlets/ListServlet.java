@@ -4,6 +4,7 @@ import com.petrov.controller.dto.ProductDto;
 import com.petrov.service.CategoryService;
 import com.petrov.service.ProductService;
 
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,12 +18,15 @@ import java.util.List;
 @WebServlet(urlPatterns = "/list")
 public class ListServlet extends HttpServlet {
 
-    CategoryService categoryService = CategoryService.getCategoryService();
+    @Inject
+    CategoryService categoryService;
+
+    @Inject
+    ProductService productService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        ProductService productService = ProductService.getProductService();
         List<String> products = new ArrayList<>();
         for (ProductDto productDto : productService.findAll()) {
             products.add(productDto.getTitle() + ": " + categoryService.findById(productDto.getCategoryDto().getId()).getTitle());

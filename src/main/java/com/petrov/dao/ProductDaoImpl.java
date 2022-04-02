@@ -4,14 +4,14 @@ import com.petrov.entity.Product;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import javax.ejb.Stateful;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+@Stateful
 public class ProductDaoImpl implements ProductDao {
-
-    private static final ProductDao productDao = new ProductDaoImpl();
 
     private Session session;
 
@@ -63,9 +63,5 @@ public class ProductDaoImpl implements ProductDao {
         } finally {
             closeSessionWithTransaction();
         }
-    }
-
-    public static ProductDao getProductDao() {
-        return productDao;
     }
 }
