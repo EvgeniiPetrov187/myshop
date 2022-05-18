@@ -15,3 +15,7 @@
     background-color: blueviolet;
     z-index: 10;
 }
+.messages {
+    flex-direction: row;
+    justify-content: flex-start;
+}

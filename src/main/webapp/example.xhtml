@@ -6,20 +6,24 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-   <title>CDI EXAMPLE</title>
-   <link rel="stylesheet" href="styles.css" type="text/css"/>
+    <title>CDI EXAMPLE</title>
+    <link rel="stylesheet" href="styles.css" type="text/css"/>
 </h:head>
 
 <h:body>
-   <div class="main-container">
-      <h:outputText value="#{exampleBean.allProducts}"/>
-      <h:form>
-         <h:inputText value="#{exampleBean.title}"/>
-         <br/>
-         <h:inputText value="#{exampleBean.category}"/>
-         <br/>
-         <h:commandLink value="Save" action="#{exampleBean.save}"/>
-      </h:form>
-   </div>
+    <div class="main-container">
+
+        <ui:repeat var="product" value="#{exampleBean.allProducts}">
+            #{product}<br />
+        </ui:repeat>
+
+        <h:form>
+            <h:inputText value="#{exampleBean.title}"/>
+            <br/>
+            <h:inputText value="#{exampleBean.category}"/>
+            <br/>
+            <h:commandButton value="Save" action="#{exampleBean.save}"/>
+        </h:form>
+    </div>
 </h:body>
 </html>
