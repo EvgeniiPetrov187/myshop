@@ -20,7 +20,10 @@ public class Utils {
     }
 
     public static CategoryDto mapCategoryDto(Category category) {
-        return new CategoryDto(category.getId(), category.getTitle());
+        if (category != null) {
+            return new CategoryDto(category.getId(), category.getTitle());
+        } else {
+            return null;
+        }
     }
-
 }

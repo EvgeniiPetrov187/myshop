@@ -8,6 +8,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static com.petrov.Utils.mapCategoryDto;
@@ -27,7 +28,8 @@ public class CategoryService implements Serializable {
     }
 
     public CategoryDto findByTitle(String title) {
-        List<CategoryDto> categoryDtoList = categoryDao.findAll().stream().map(Utils::mapCategoryDto).collect(Collectors.toList());
+        List<CategoryDto> categoryDtoList = categoryDao.findAll().stream().map(Utils::mapCategoryDto)
+                .filter(Objects::nonNull).collect(Collectors.toList());
         for (CategoryDto categoryDto : categoryDtoList) {
             if (title.equals(categoryDto.getTitle())) {
                 return categoryDto;
