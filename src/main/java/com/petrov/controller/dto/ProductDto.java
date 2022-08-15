@@ -1,20 +1,33 @@
 package com.petrov.controller.dto;
 
+import java.math.BigDecimal;
+
 public class ProductDto {
 
-        private Long id;
+    private Long id;
 
-        private String title;
+    private String code;
 
-        private CategoryDto categoryDto;
+    private String url;
 
-        private Long orderId;
+    private String title;
 
-    public ProductDto(Long id, String title, CategoryDto categoryDto) {
+    private CategoryDto categoryDto;
+
+    private Long orderId;
+
+    private BigDecimal price;
+
+    public ProductDto() {
+    }
+
+    public ProductDto(Long id, String code, String title, String url, CategoryDto categoryDto, BigDecimal price) {
         this.id = id;
+        this.code = code;
+        this.url = url;
         this.title = title;
         this.categoryDto = categoryDto;
-
+        this.price = price;
     }
 
     public Long getId() {
@@ -47,5 +60,29 @@ public class ProductDto {
 
     public void setOrderId(Long orderId) {
         this.orderId = orderId;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 }

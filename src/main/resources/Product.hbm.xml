@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-access="field" xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
+    <class name="com.petrov.entity.Product" table="PRODUCTS" schema="EPETROV" entity-name="product">
+        <id column="ID" name="id" type="java.lang.Long">
+            <generator class="sequence">
+                <param name="SQ_PRODUCTS"/>
+            </generator>
+        </id>
+        <property name="code" column="CODE" type="java.lang.String"/>
+        <property name="title" column="TITLE" type="java.lang.String"/>
+        <property name="url" column="URL" type="java.lang.String"/>
+        <property name="price" column="PRICE" type="java.math.BigDecimal"/>
+        <many-to-one name="category" class="com.petrov.entity.Category" fetch="select">
+            <column name="CATEGORY_ID"/>
+        </many-to-one>
+        <set name="orders" table="ORDERS_PRODUCTS" lazy="false">
+            <key column="PRODUCT_ID"/>
+            <many-to-many column="ORDER_ID"/>
+        </set>
+    </class>
+</hibernate-mapping>

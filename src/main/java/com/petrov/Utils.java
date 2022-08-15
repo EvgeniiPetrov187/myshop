@@ -8,11 +8,21 @@ import com.petrov.entity.Product;
 public class Utils {
 
     public static ProductDto mapProduct(Product product) {
-        return new ProductDto(product.getId(), product.getTitle(),  mapCategoryDto(product.getCategory()));
+        return new ProductDto(product.getId(),
+                product.getCode(),
+                product.getTitle(),
+                product.getUrl(),
+                mapCategoryDto(product.getCategory()),
+                product.getPrice());
     }
 
     public static Product mapProductDto(ProductDto productDto) {
-        return new Product(productDto.getId(), productDto.getTitle(), mapCategory(productDto.getCategoryDto()));
+        return new Product(productDto.getId(),
+                productDto.getCode(),
+                productDto.getTitle(),
+                productDto.getUrl(),
+                mapCategory(productDto.getCategoryDto()),
+                productDto.getPrice());
     }
 
     public static Category mapCategory(CategoryDto categoryDto) {

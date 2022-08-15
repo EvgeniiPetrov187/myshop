@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-access="field" xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
+    <class name="com.petrov.entity.Category" table="CATEGORIES" schema="EPETROV" entity-name="category">
+        <id column="ID" name="id" type="java.lang.Long">
+            <generator class="sequence">
+                <param name="SQ_CATEGORIES"/>
+            </generator>
+        </id>
+        <property name="title" column="TITLE" type="java.lang.String"/>
+        <set name="products" lazy="false" table="PRODUCTS" inverse="true" cascade="save-update" fetch="select">
+            <key column="CATEGORY_ID"/>
+            <one-to-many class="com.petrov.entity.Category"/>
+        </set>
+    </class>
+</hibernate-mapping>

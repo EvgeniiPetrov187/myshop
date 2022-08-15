@@ -1,21 +1,24 @@
 package com.petrov.entity;
 
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "categories")
-public class Category {
+@Table(name = "CATEGORIES")
+public class Category implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(name = "title")
+    @Column(name = "TITLE")
     private String title;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-    List<Product> products;
+    Set<Product> products;
 
     public Category() {
     }
@@ -41,11 +44,20 @@ public class Category {
         this.title = title;
     }
 
-    public List<Product> getProducts() {
+    public Set<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(Set<Product> products) {
         this.products = products;
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", products=" + products +
+                '}';
     }
 }

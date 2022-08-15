@@ -1,11 +1,13 @@
 package com.petrov.dao;
 
+//import com.petrov.HibernateConfig;
+import com.petrov.Config;
 import com.petrov.entity.Category;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.ejb.Stateful;
-import java.util.List;
+import java.util.Collection;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -28,14 +30,28 @@ public class CategoryDaoImpl implements CategoryDao {
         session.close();
     }
 
+//    public Session openSessionWithTransaction() {
+//        session = HibernateConfig.getSessionFactory().openSession();
+//        session.beginTransaction();
+//        return session;
+//    }
+//
+//    public void closeSessionWithTransaction() {
+//        session.getTransaction().commit();
+//        if (session != null && session.isOpen()) {
+//            session.close();
+//        }
+//    }
+
     @Override
-    public List findAll() {
-        return executeSessionFunction(session1 -> session1.createQuery("select c from Category c").list());
+    public Collection findAll() {
+        return executeSessionFunction(session1 -> session1.createQuery("select c from com.petrov.entity.Category c").list());
     }
 
 
     @Override
     public Optional<Category> findById(Long id) {
+//        return null;
         return executeSessionFunction(session -> Optional.ofNullable(session.get(Category.class, id)));
     }
 

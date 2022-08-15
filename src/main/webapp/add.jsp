@@ -19,15 +19,16 @@
         }
     %>
     <form method="post">
-        <div id="popup" class="pop-up-window">
-            <h2>Вы уверены, что хотите сохранить?</h2>
-            <button type="submit" class="close">Ок</button>
-            <button type="reset" onclick="closePopUp()">Отмена</button>
-        </div>
         <div>
             <label>
+                Code:
+                <input type="text" name="code"><br/>
                 Name:
                 <input type="text" name="title"><br/>
+                URL:
+                <input type="text" name="url"><br/>
+                Price:
+                <input type="number" name="price"><br/>
                 Category:
                 <select name="category">
                     <%
@@ -44,21 +45,43 @@
                 </select>
             </label>
         </div>
+        <div id="popup" class="pop-up-window">
+            <h2>Вы уверены, что хотите сохранить?</h2>
+            <button type="submit" class="close">Ок</button>
+            <button type="reset" onclick="closePopUp()">Отмена</button>
+        </div>
     </form>
-    <button id="pop-button">Agree</button>
-    <button onclick="location.href='/'">Back to main</button>
-    <button class="help">Help</button>
+    <div id="buttons">
+        <button id="pop-button">Agree</button>
+        <button onclick="location.href='/'">Back to main</button>
+        <button class="help">Help</button>
+    </div>
 </div>
-<div>
-
+<div class="messages">
+    <%
+        List<String> messagesFirst = (List<String>) request.getAttribute("messages-first");
+        if (messagesFirst != null && !messagesFirst.isEmpty()) {
+            for (String message : messagesFirst) {
+                out.println("<h2>" + message + "</h2>");
+            }
+        }
+    %>
+    <%
+        List<String> messagesSecond = (List<String>) request.getAttribute("messages-second");
+        if (messagesSecond != null && !messagesSecond.isEmpty()) {
+            for (String message : messagesSecond) {
+                out.println("<h2>" + message + "</h2>");
+            }
+        }
+    %>
 </div>
 </body>
 
 <script type="text/javascript">
 
     $(".help").on("click",
-        function() {
-            $('.main-container').css("width","55px");
+        function () {
+            $('.main-container').css("width", "55px");
             alert("HELP");
         })
 
@@ -67,18 +90,21 @@
     });
 
     let popup = $('#popup');
-    let popButton = $('#pop-button');
-    let popupClose = $('.close');
+    let buttons = $('#buttons');
 
-    popButton.onclick = function () {
-        popup.style.display = "block";
-    };
-    popupClose.onclick = function () {
-        popup.style.display = "none"
-    };
+
+    $('#pop-button').click(function () {
+        popup.css('display', 'block');
+        buttons.css('display', 'none');
+    });
+    $('.close').click(function () {
+        popup.css('display', 'none');
+        buttons.css('display', 'block');
+    });
 
     function closePopUp() {
-        popup.style.display = "none";
+        popup.css('display', 'none');
+        buttons.css('display', 'block');
     }
 
 </script>

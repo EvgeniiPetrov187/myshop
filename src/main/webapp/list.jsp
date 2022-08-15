@@ -1,4 +1,5 @@
 <%@ page import="java.util.List" %>
+<%@ page import="com.petrov.controller.dto.ProductDto" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
@@ -11,12 +12,17 @@
 <body>
 <div class="main-container">
     <%
-        List<String> titles = (List<String>) request.getAttribute("products");
-        if (titles != null && !titles.isEmpty()) {
+        List<ProductDto> products = (List<ProductDto>) request.getAttribute("products");
+        if (products != null && !products.isEmpty()) {
             out.println("<ui>");
-
-            for (String title : titles) {
-                out.println("<li>" + title + "</li>");
+            for (ProductDto productDto : products) {
+                out.println("<li> " +
+                        "Code: " + productDto.getCode() +
+                        " Title: " + productDto.getTitle() +
+                        " URL: " + productDto.getUrl() +
+                        " Price: " + productDto.getPrice() +
+                        " Category: " + productDto.getCategoryDto().getTitle() +
+                        "</li>");
             }
             out.println("</ui>");
         } else out.println("<p>There is nothing yet!</p>");
@@ -32,22 +38,22 @@
     </div>
 </div>
 <div class="messages">
-        <%
-            List<String> messagesFirst = (List<String>) request.getAttribute("messages-first");
-            if (messagesFirst != null && !messagesFirst.isEmpty()) {
-                for (String message : messagesFirst) {
-                    out.println("<h2>" + message + "</h2>");
-                }
+    <%
+        List<String> messagesFirst = (List<String>) request.getAttribute("messages-first");
+        if (messagesFirst != null && !messagesFirst.isEmpty()) {
+            for (String message : messagesFirst) {
+                out.println("<h2>" + message + "</h2>");
             }
-        %>
-        <%
-            List<String> messagesSecond = (List<String>) request.getAttribute("messages-second");
-            if (messagesSecond != null && !messagesSecond.isEmpty()) {
-                for (String message : messagesSecond) {
-                    out.println("<h2>" + message + "</h2>");
-                }
+        }
+    %>
+    <%
+        List<String> messagesSecond = (List<String>) request.getAttribute("messages-second");
+        if (messagesSecond != null && !messagesSecond.isEmpty()) {
+            for (String message : messagesSecond) {
+                out.println("<h2>" + message + "</h2>");
             }
-        %>
+        }
+    %>
 </div>
 </body>
 </html>

@@ -1,29 +1,35 @@
 package com.petrov.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "orders")
-public class Order {
+@Table(name = "ORDERS")
+public class Order implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(nullable = false, name = "order_date")
-    private LocalDateTime orderDate;
+    @Column(nullable = false, name = "ORDER_DATE")
+    private Date orderDate;
 
     @ManyToMany(mappedBy = "orders")
-    private List<Product> productList;
+    private Set<Product> products;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "user_id")
-    private User user;
+//    @ManyToOne(optional = false)
+//    @JoinColumn(name = "user_id")
+//    private User user;
 
-    @Column(name = "status")
+    @Column(name = "STATUS")
     private String status;
+
+    @Column(name = "QUANTITY")
+    private Integer quantity;
 
     public Order() {
     }
@@ -36,27 +42,19 @@ public class Order {
         this.id = id;
     }
 
-    public List<Product> getProductList() {
-        return productList;
+    public Set<Product> getProducts() {
+        return products;
     }
 
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
+    public void setProducts(Set<Product> products) {
+        this.products = products;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public LocalDateTime getOrderDate() {
+    public Date getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(LocalDateTime orderDate) {
+    public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
     }
 
@@ -66,5 +64,24 @@ public class Order {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", orderDate=" + orderDate +
+                ", products=" + products +
+                ", status='" + status + '\'' +
+                ", quantity=" + quantity +
+                '}';
     }
 }

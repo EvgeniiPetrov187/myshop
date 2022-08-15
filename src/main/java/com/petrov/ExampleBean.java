@@ -4,20 +4,22 @@ import com.petrov.controller.dto.ProductDto;
 import com.petrov.service.CategoryService;
 import com.petrov.service.ProductService;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.stream.Collectors;
 
 @Named
 @RequestScoped
 public class ExampleBean implements Serializable {
 
-    @Inject
+    @EJB
     private ProductService productService;
 
-    @Inject
+    @EJB
     private CategoryService categoryService;
 
     private String title;
@@ -46,6 +48,13 @@ public class ExampleBean implements Serializable {
     }
 
     public void save(){
-        productService.saveOrUpdate(new ProductDto(null, getTitle(), categoryService.findById(getCategory())));
+        ProductDto productDto = new ProductDto(
+                null,
+                null,
+                getTitle(),
+                null,
+                categoryService.findById(getCategory()),
+                BigDecimal.ZERO);
+        productService.saveOrUpdate(productDto);
     }
 }

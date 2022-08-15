@@ -7,27 +7,24 @@
 </head>
 
 <body>
-
-<div id="popup" class="pop-up-window">
-    <h2>Вы уверены, сто хотите сохранить?</h2>
-    <span class="close">&times;</span>
-</div>
-
 <div id="main" class="main-container">
     <div>
         <button onclick="location.href='/list'">List of products</button>
         <button onclick="location.href='/add'">Add product</button>
+        <button onclick="location.href='/example.xhtml'">CDI</button>
         <button onclick="www()">Test</button>
         <button id="popButton">Popup</button>
     </div>
+</div>
+<div id="popup" class="pop-up-window">
+    <h2>Вы уверены, что хотите сохранить?</h2>
+    <span class="close">&times;</span>
 </div>
 
 </body>
 
 <script>
     function www() {
-        let container = document.getElementById('main');
-        container.style.width = '55px'
         alert("HELP");
     }
 

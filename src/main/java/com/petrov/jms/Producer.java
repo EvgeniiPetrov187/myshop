@@ -20,16 +20,14 @@ public class Producer {
     @Resource(name = "java:/jms/queue/ExpiryQueue")
     private Destination destination;
 
-    @Schedule(hour = "*", minute = "*", second = "*/2", persistent = false)
-    public void produceMessage(){
+    public void produceMessage(String message){
         Random random = new Random();
         try {
             Connection connection = connectionFactory.createConnection();
             Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
             MessageProducer messageProducer = session.createProducer(destination);
-            TextMessage textMessage = session.createTextMessage(messages[random.nextInt(4)]);
+            TextMessage textMessage = session.createTextMessage(message != null ? message : messages[random.nextInt(4)]);
             messageProducer.send(textMessage);
-            System.out.println("Producer sout");
             logger.info("Producer logger");
             connection.close();
             session.close();

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-access="field" xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
+    <class name="com.petrov.entity.Order" table="ORDERS" schema="EPETROV" entity-name="order">
+        <id column="ID" name="id" type="java.lang.Long">
+            <generator class="sequence">
+                <param name="SQ_ORDERS"/>
+            </generator>
+        </id>
+        <property name="quantity" column="QUANTITY" type="java.lang.Integer"/>
+        <property name="status" column="STATUS" type="java.lang.String"/>
+        <property name="orderDate" column="ORDER_DATE" type="java.time.LocalDateTime"/>
+        <set name="products" table="ORDERS_PRODUCTS" lazy="false">
+            <key column="ORDER_ID"/>
+            <many-to-many column="PRODUCT_ID" class="com.petrov.entity.Product"/>
+        </set>
+    </class>
+</hibernate-mapping>
